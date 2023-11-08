@@ -140,57 +140,368 @@ export default function Home() {
   // return result.join(" ");
   // }
 
-  function humanReadable(seconds: number) {
-    const HH = Math.floor(seconds / 3600);
-    const MM = Math.floor((seconds - HH * 3600) / 60);
-    const SS = Math.floor(seconds - HH * 3600 - MM * 60);
+  // function humanReadable(seconds: number) {
+  //   const HH = Math.floor(seconds / 3600);
+  //   const MM = Math.floor((seconds - HH * 3600) / 60);
+  //   const SS = Math.floor(seconds - HH * 3600 - MM * 60);
 
-    return [HH, MM, SS].reduce((acc, el, i) => {
-      const curTimeValLength = el.toString().split("").length;
-      return (acc = acc.concat(
-        i < 2 && curTimeValLength === 1
-          ? `0${el}:`
-          : i < 2 && curTimeValLength > 1
-          ? `${el}:`
-          : curTimeValLength === 1
-          ? `0${el}`
-          : `${el}`
-      ));
-    }, "");
-    // console.log({ HH, MM, SS });
-    // console.log("HH.length =>", HH.toString().split("").length);
+  //   return [HH, MM, SS].reduce((acc, el, i) => {
+  //     const curTimeValLength = el.toString().split("").length;
+  //     return (acc = acc.concat(
+  //       i < 2 && curTimeValLength === 1
+  //         ? `0${el}:`
+  //         : i < 2 && curTimeValLength > 1
+  //         ? `${el}:`
+  //         : curTimeValLength === 1
+  //         ? `0${el}`
+  //         : `${el}`
+  //     ));
+  //   }, "");
+  // }
 
-    // return `${HH}:${MM}:${SS}`;
+  // function findUniq(arr: Array<string>) {
+  //   if (arr.join("").length === 1) {
+  //     return arr.join("");
+  //   }
 
-    // const date = new Date(seconds);
-    // return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+  //   let itemPos = 0;
+
+  //   if (arr.join("").length === arr.length) {
+  //     for (let i = 0; i < arr.length; i++) {
+  //       if (arr[i] !== arr[i + 1] && arr[i + 1] !== undefined) {
+  //         return arr[itemPos];
+  //       }
+  //     }
+  //   }
+
+  //   let longestItemInArray = 0;
+  //   let indexOfLongestItemInArray = 0;
+
+  //   arr.map((el, ind) => {
+  //     if (el.length > longestItemInArray) {
+  //       longestItemInArray = el.length;
+  //       indexOfLongestItemInArray = ind;
+  //     }
+  //   });
+
+  //   const re = new RegExp("[" + arr[indexOfLongestItemInArray] + "]+", "i");
+
+  //   arr.map((item, ind) => {
+  //     for (let index = 0; index < item.length; index++) {
+  //       if (!re.test(item[index])) {
+  //         itemPos = ind;
+  //         break;
+  //       }
+  //     }
+  //   });
+  //   return arr[itemPos];
+  // }
+
+  // function calculateString(st: string) {
+  //   const symbol = st.charAt(st.search(/[\*\-\+\/]/));
+  //   const strArr = st.split(/[\*\-\+\/]/);
+  //   const arr = [];
+  //   const re = /[\d\.]+/g;
+  //   strArr.map((val) => {
+  //     arr.push(
+  //       Array.from(val.matchAll(re)).reduce((acc, val) => (acc = `${acc}` + `${val[0]}`), 0)
+  //     );
+  //   });
+
+  //   return eval(`${+arr[0]}${symbol}${+arr[1]}`).toFixed();
+  // }
+
+  // function calculateString(s) {
+  //   return eval(s.replace(/[^\d+*/.-]/g, "")).toFixed();
+  // }
+
+  // function solve(arr: Array<number>) {
+  //   let set = new Set();
+  //   arr.map((el, i, ar) => {
+  //     const slicedArr = ar.slice(i + 1);
+  //     const maxNum = Math.max(...slicedArr);
+  //     if (el > maxNum) {
+  //       set.add(el);
+  //     }
+  //   });
+  //   return [...set];
+  // }
+
+  // function autocomplete(input, dictionary){
+  //   const clearedInput = input.replace(/[\W\d_]/g, "");
+
+  //     if (clearedInput === "") {
+  //       return [];
+  //     }
+
+  //     return dictionary.filter((val) => new RegExp(`^${clearedInput}`, "i").test(val) === true).slice(0, 5);
+  // }
+
+  // function selReverse(array: number[], length: number) {
+  //   if (array.length <= length) {
+  //     return array.reverse();
+  //   }
+
+  //   if (length === 0) {
+  //     return array;
+  //   }
+
+  //   let result = [];
+  //   let chunk = [];
+  //   for (let i = 0; i < array.length; i += length) {
+  //     chunk = array.slice(i, i + length).reverse();
+  //     result.push(...chunk);
+  //   }
+  //   return result;
+  // }
+
+  // const multiplicationTable = (size: number) => {
+  //   let chunk = [];
+  //   let result = [];
+  //   let count = size;
+
+  //   while (count > 0) {
+  //     chunk.unshift(count);
+  //     count--;
+  //   }
+  //   result.push(chunk);
+
+  //   for (let i = 2; i <= size; i++) {
+  //     result.push(chunk.map((val) => val * i));
+  //   }
+
+  //   return result;
+  // };
+
+  // function biggest(nums) {
+  //   return nums
+  //     .map(String)
+  //     .sort((a, b) => (b + a).localeCompare(a + b))
+  //     .join("")
+  //     .replace(/^0+/, "0");
+  // }
+
+  // const rotate = (matrix: number[][], direction: string) => {
+  //   if (matrix.length === 1 && matrix[0].length === 1) {
+  //     return matrix;
+  //   }
+
+  //   let result = [];
+  //   const map = new Map();
+  //   for (let i = 0; i < matrix.length; i++) {
+  //     matrix[i].map((val, ind, arr) => {
+  //       let curVal = direction === "clockwise" ? val : arr[arr.length - 1 - ind];
+  //       if (i === 0) {
+  //         map.set(ind, [curVal]);
+  //       } else {
+  //         map.set(ind, map.get(ind).concat([curVal]));
+  //       }
+  //     });
+  //   }
+
+  //   const iterator = map.values();
+  //   for (let i = 0; i < map.size; i++) {
+  //     const arrElement = iterator.next().value;
+  //     let chunk = direction === "clockwise" ? [...arrElement].slice().reverse() : [...arrElement].slice();
+  //     result.push(chunk);
+  //   }
+
+  //   return result;
+  // };
+
+  // function twoSum(numbers: number[], target: number) {
+  //   let res = [];
+  //   numbers.map((val1, ind1) => {
+  //     numbers.map((val2, ind2) => {
+  //       if (target - val1 === val2 && ind1 !== ind2 && res.length < 2) {
+  //         res.push(ind1, ind2);
+  //       }
+  //     });
+  //   });
+  //   return res;
+  // }
+
+  // function matrixAddition(a: number[][], b: number[][]) {
+  //   let chunk = [];
+  //   const result = [];
+  //   for (let i = 0; i < a.length; i++) {
+  //     chunk = [];
+  //     for (let j = 0; j < a[i].length; j++) {
+  //       chunk.push(a[i][j] + b[i][j]);
+  //     }
+  //     result.push(chunk);
+  //   }
+  //   return result;
+  // }
+
+  // function arrange(s: number[]) {
+  //   const result = [];
+  //   const arrLength = s.length;
+  //   for (let i = 0, j = arrLength - 1; i <= j; i++, j--) {
+  //     if (i % 2 === 0) {
+  //       result.push(s[i], s[j]);
+  //     } else {
+  //       result.push(s[j], s[i]);
+  //     }
+  //   }
+  //   if (arrLength < result.length) {
+  //     result.pop();
+  //   }
+  //   return result;
+  // }
+
+  // function abbreviate(string: string) {
+  //   let result = [];
+  //   const strArr = string.split(" ");
+
+  //   strArr.map((el) => {
+  //     const itemLength = el.replace(/[^A-Za-z]/g, "").length;
+  //     if (itemLength < 4) {
+  //       result.push(el);
+  //     } else {
+  //       const findNonLetters = el.match(/[-]/);
+  //       if (findNonLetters?.index) {
+  //         const splitter = findNonLetters?.[0];
+  //         const ellSplited = el.split(splitter);
+  //         let chunk = [];
+  //         ellSplited.map((el2, id) => {
+  //           splitterFunc(el2, el2.length, chunk, splitter);
+  //           if (id === 0) chunk.push(splitter);
+  //         });
+  //         result.push(chunk.join(""));
+  //       } else {
+  //         splitterFunc(el, itemLength);
+  //       }
+  //     }
+  //   });
+
+  //   function splitterFunc(el, length, chunk, splitter) {
+  //     const ellSplited = el.split("");
+  //     ellSplited.splice(1, length - 2, `${length - 2}`);
+  //     splitter ? chunk.push(ellSplited.join("")) : result.push(ellSplited.join(""));
+  //   }
+
+  //   return result.join(" ");
+  // }
+
+  // var find = /[a-z]{4,}/gi;
+  // function replace(match) {
+  //   return match[0] + (match.length - 2) + match[match.length - 1];
+  // }
+  // function abbreviate(string) {
+  //   return string.replace(find, replace);
+  // }
+
+  // function travel(r: string, zipcode: string) {
+  //   if (zipcode === "") return ":/";
+  //   if (zipcode.length < 8) return `${zipcode}:/`;
+  //   const addressArr = r.split(",");
+  //   let steetArr = [];
+  //   let houseArr = [];
+  //   // console.log("addressArr =>", addressArr);
+  //   // const findZip = new String(zipcode);
+  //   const re = new RegExp(`${zipcode}`, "g");
+  //   // const regExpZip = zipcode.split("");
+  //   const filtredArr = addressArr.filter((item) => item.match(zipcode));
+  //   // const filtredArr = addressArr.filter((item) => item.match(re));
+  //   if (filtredArr.length === 0) return `${zipcode}:/`;
+  //   console.log("filtredArr =>", filtredArr);
+  //   console.log("zipcode.length =>", zipcode.length);
+  //   filtredArr.map((item) => {
+  //     console.log("item =>", item);
+  //     const zip = item.substring(item.length - 8);
+  //     console.log("zip.length =>", zip);
+  //     const house = item.match(/^[\d]+/)?.[0];
+  //     console.log("house =>", house);
+  //     const withoutHouse = item.substring(house!.length + 1);
+  //     console.log("withoutHouse =>", withoutHouse);
+  //     const withoutZip = withoutHouse.substring(0, withoutHouse.length - zipcode.length - 1);
+  //     console.log("withoutZip =>", withoutZip);
+  //     const withoutZipArr = withoutZip.split(" ");
+  //     console.log("withoutZipArr =>", withoutZipArr);
+  //     let town = "";
+  //     let street = "";
+  //     if (withoutZipArr[withoutZipArr.length - 1] === "Town") {
+  //       town = withoutZipArr[withoutZipArr.length - 2] + " " + withoutZipArr[withoutZipArr.length - 1];
+  //       console.log("town =>", town);
+  //     } else {
+  //       town = withoutZipArr[withoutZipArr.length - 1];
+  //       console.log("town =>", town);
+  //     }
+  //     street = withoutZip.substring(0, withoutZip.length - town.length - 1);
+  //     console.log("street =>", street);
+  //     steetArr.push(`${street} ${town}`);
+  //     houseArr.push(house);
+  //   });
+  //   console.log("steetArr =>", steetArr.join(","));
+  //   console.log("houseArr =>", houseArr.join(","));
+  //   console.log("result =>", `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`);
+  //   return `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`;
+  // }
+  function travel(r: string, zipcode: string) {
+    if (zipcode === "") return ":/";
+    if (zipcode.length < 8) return `${zipcode}:/`;
+    let steetArr = [];
+    let houseArr = [];
+
+    const filtredArr = r.split(",").filter((item) => item.match(zipcode));
+    if (filtredArr.length === 0) return `${zipcode}:/`;
+
+    filtredArr.map((item) => {
+      const house = item.match(/^[\d]+/)?.[0];
+      const withoutHouse = item.substring(house.length + 1);
+      const withoutZip = withoutHouse.substring(0, withoutHouse.length - zipcode.length - 1);
+      const withoutZipArr = withoutZip.split(" ");
+      const len = withoutZipArr.length - 1;
+      const town =
+        withoutZipArr[len] === "Town"
+          ? withoutZipArr[withoutZipArr.length - 2] + " " + withoutZipArr[len]
+          : withoutZipArr[len];
+      const street = withoutZip.substring(0, withoutZip.length - town.length - 1);
+
+      steetArr.push(`${street} ${town}`);
+      houseArr.push(house);
+    });
+
+    return `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`;
   }
 
+  const ad =
+    "123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432," +
+    "54 Holy Grail Street Niagara Town ZP 32908,3200 Main Rd. Bern AE 56210,1 Gordon St. Atlanta RE 13000," +
+    "10 Pussy Cat Rd. Chicago EX 34342,10 Gordon St. Atlanta RE 13000,58 Gordon Road Atlanta RE 13000," +
+    "22 Tokyo Av. Tedmondville SW 43098,674 Paris bd. Abbeville AA 45521,10 Surta Alley Goodtown GG 30654," +
+    "45 Holy Grail Al. Niagara Town ZP 32908,320 Main Al. Bern AE 56210,14 Gordon Park Atlanta RE 13000," +
+    "100 Pussy Cat Rd. Chicago EX 34342,2 Gordon St. Atlanta RE 13000,5 Gordon Road Atlanta RE 13000," +
+    "2200 Tokyo Av. Tedmondville SW 43098,67 Paris St. Abbeville AA 45521,11 Surta Avenue Goodtown GG 30654," +
+    "45 Holy Grail Al. Niagara Town ZP 32918,320 Main Al. Bern AE 56215,14 Gordon Park Atlanta RE 13200," +
+    "100 Pussy Cat Rd. Chicago EX 34345,2 Gordon St. Atlanta RE 13222,5 Gordon Road Atlanta RE 13001," +
+    "2200 Tokyo Av. Tedmondville SW 43198,67 Paris St. Abbeville AA 45522,11 Surta Avenue Goodville GG 30655," +
+    "2222 Tokyo Av. Tedmondville SW 43198,670 Paris St. Abbeville AA 45522,114 Surta Avenue Goodville GG 30655," +
+    "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000";
+
   const test = () => {
-    const test1 = humanReadable(9020); //, "02:30:20 ");
-    const test2 = humanReadable(0); //, "00:00:00 ");
-    const test3 = humanReadable(59); //, " 00:00:59");
-    const test4 = humanReadable(60); //, " 00:01:00");
-    const test5 = humanReadable(90); //, "00:01:30 ");
-    const test6 = humanReadable(3599); //, " 00:59:59");
-    const test7 = humanReadable(3600); //, " 01:00:00");
-    const test8 = humanReadable(45296); //, " 12:34:56");
-    const test9 = humanReadable(86399); //, "23:59:59 ");
-    const test10 = humanReadable(86400); //, " 24:00:00");
-    const test11 = humanReadable(3599999); //, " 99:59:59");
+    const test0 = travel(ad, "AA 45522"); //, "AA 45522:Paris St. Abbeville,Paris St. Abbeville/67,670")
+    const test1 = travel(ad, "EX 34342"); //, "EX 34342:Pussy Cat Rd. Chicago,Pussy Cat Rd. Chicago/10,100")
+    const test2 = travel(ad, "EX 34345"); //, "EX 34345:Pussy Cat Rd. Chicago/100")
+    const test3 = travel(ad, "AA 45521"); //, "AA 45521:Paris bd. Abbeville,Paris St. Abbeville/674,67")
+    const test4 = travel(ad, "AE 56215"); //, "AE 56215:Main Al. Bern/320")
+    const test5 = travel(ad, ""); //, ":/");
+    const test6 = travel(ad, "NY 5643"); // --> "NY 5643:/"
 
     console.log({
+      test0,
       test1,
       test2,
       test3,
       test4,
       test5,
       test6,
-      test7,
-      test8,
-      test9,
-      test10,
-      test11,
+      // test7,
+      // test8,
+      // test9,
+      // test10,
+      // test11,
     });
   };
   // "Nananananananananananananananana Batman!" --> "####################################man!"
