@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 "use client";
 
 export default function Home() {
@@ -395,108 +396,93 @@ export default function Home() {
   // function travel(r: string, zipcode: string) {
   //   if (zipcode === "") return ":/";
   //   if (zipcode.length < 8) return `${zipcode}:/`;
-  //   const addressArr = r.split(",");
   //   let steetArr = [];
   //   let houseArr = [];
-  //   // console.log("addressArr =>", addressArr);
-  //   // const findZip = new String(zipcode);
-  //   const re = new RegExp(`${zipcode}`, "g");
-  //   // const regExpZip = zipcode.split("");
-  //   const filtredArr = addressArr.filter((item) => item.match(zipcode));
-  //   // const filtredArr = addressArr.filter((item) => item.match(re));
+
+  //   const filtredArr = r.split(",").filter((item) => item.match(zipcode));
   //   if (filtredArr.length === 0) return `${zipcode}:/`;
-  //   console.log("filtredArr =>", filtredArr);
-  //   console.log("zipcode.length =>", zipcode.length);
+
   //   filtredArr.map((item) => {
-  //     console.log("item =>", item);
-  //     const zip = item.substring(item.length - 8);
-  //     console.log("zip.length =>", zip);
   //     const house = item.match(/^[\d]+/)?.[0];
-  //     console.log("house =>", house);
-  //     const withoutHouse = item.substring(house!.length + 1);
-  //     console.log("withoutHouse =>", withoutHouse);
+  //     const withoutHouse = item.substring(house.length + 1);
   //     const withoutZip = withoutHouse.substring(0, withoutHouse.length - zipcode.length - 1);
-  //     console.log("withoutZip =>", withoutZip);
   //     const withoutZipArr = withoutZip.split(" ");
-  //     console.log("withoutZipArr =>", withoutZipArr);
-  //     let town = "";
-  //     let street = "";
-  //     if (withoutZipArr[withoutZipArr.length - 1] === "Town") {
-  //       town = withoutZipArr[withoutZipArr.length - 2] + " " + withoutZipArr[withoutZipArr.length - 1];
-  //       console.log("town =>", town);
-  //     } else {
-  //       town = withoutZipArr[withoutZipArr.length - 1];
-  //       console.log("town =>", town);
-  //     }
-  //     street = withoutZip.substring(0, withoutZip.length - town.length - 1);
-  //     console.log("street =>", street);
+  //     const len = withoutZipArr.length - 1;
+  //     const town =
+  //       withoutZipArr[len] === "Town"
+  //         ? withoutZipArr[withoutZipArr.length - 2] + " " + withoutZipArr[len]
+  //         : withoutZipArr[len];
+  //     const street = withoutZip.substring(0, withoutZip.length - town.length - 1);
+
   //     steetArr.push(`${street} ${town}`);
   //     houseArr.push(house);
   //   });
-  //   console.log("steetArr =>", steetArr.join(","));
-  //   console.log("houseArr =>", houseArr.join(","));
-  //   console.log("result =>", `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`);
+
   //   return `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`;
   // }
-  function travel(r: string, zipcode: string) {
-    if (zipcode === "") return ":/";
-    if (zipcode.length < 8) return `${zipcode}:/`;
-    let steetArr = [];
-    let houseArr = [];
 
-    const filtredArr = r.split(",").filter((item) => item.match(zipcode));
-    if (filtredArr.length === 0) return `${zipcode}:/`;
+  // const ad =
+  //   "123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432," +
+  //   "54 Holy Grail Street Niagara Town ZP 32908,3200 Main Rd. Bern AE 56210,1 Gordon St. Atlanta RE 13000," +
+  //   "10 Pussy Cat Rd. Chicago EX 34342,10 Gordon St. Atlanta RE 13000,58 Gordon Road Atlanta RE 13000," +
+  //   "22 Tokyo Av. Tedmondville SW 43098,674 Paris bd. Abbeville AA 45521,10 Surta Alley Goodtown GG 30654," +
+  //   "45 Holy Grail Al. Niagara Town ZP 32908,320 Main Al. Bern AE 56210,14 Gordon Park Atlanta RE 13000," +
+  //   "100 Pussy Cat Rd. Chicago EX 34342,2 Gordon St. Atlanta RE 13000,5 Gordon Road Atlanta RE 13000," +
+  //   "2200 Tokyo Av. Tedmondville SW 43098,67 Paris St. Abbeville AA 45521,11 Surta Avenue Goodtown GG 30654," +
+  //   "45 Holy Grail Al. Niagara Town ZP 32918,320 Main Al. Bern AE 56215,14 Gordon Park Atlanta RE 13200," +
+  //   "100 Pussy Cat Rd. Chicago EX 34345,2 Gordon St. Atlanta RE 13222,5 Gordon Road Atlanta RE 13001," +
+  //   "2200 Tokyo Av. Tedmondville SW 43198,67 Paris St. Abbeville AA 45522,11 Surta Avenue Goodville GG 30655," +
+  //   "2222 Tokyo Av. Tedmondville SW 43198,670 Paris St. Abbeville AA 45522,114 Surta Avenue Goodville GG 30655," +
+  //   "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000";
 
-    filtredArr.map((item) => {
-      const house = item.match(/^[\d]+/)?.[0];
-      const withoutHouse = item.substring(house.length + 1);
-      const withoutZip = withoutHouse.substring(0, withoutHouse.length - zipcode.length - 1);
-      const withoutZipArr = withoutZip.split(" ");
-      const len = withoutZipArr.length - 1;
-      const town =
-        withoutZipArr[len] === "Town"
-          ? withoutZipArr[withoutZipArr.length - 2] + " " + withoutZipArr[len]
-          : withoutZipArr[len];
-      const street = withoutZip.substring(0, withoutZip.length - town.length - 1);
+  // const sortme = (courses: string[]) => {
+  //   const result = [];
+  //   let idArr = [];
+  //   let nameArr = [];
+  //   const sortedById = courses.sort((a, b) => a.slice(a.length - 4) - b.slice(b.length - 4));
+  //   console.log("sortedById =>", sortedById);
+  //   sortedById.map((item) => {
+  //     const itemId = item.slice(item.length - 4);
+  //     const itemName = item.slice(0, item.length - 4);
+  //     idArr.push(itemId);
+  //     nameArr.push(itemName);
+  //   });
 
-      steetArr.push(`${street} ${town}`);
-      houseArr.push(house);
-    });
+  //   for (let i = 0; i < idArr.length; i++) {
+  //     if (idArr[i] === idArr[i + 1]) {
+  //       continue;
+  //     }
+  //     const firstInd = idArr.indexOf(idArr[i]);
+  //     const lastInd = idArr.lastIndexOf(idArr[i]);
+  //     const nameSortArr = nameArr.slice(firstInd, lastInd + 1).sort((a, b) => a.localeCompare(b));
+  //     nameSortArr.map((val) => result.push(`${val}${idArr[i]}`));
+  //   }
 
-    return `${zipcode}:${steetArr.join(",")}/${houseArr.join(",")}`;
-  }
+  //   return result;
+  // };
+  // const sortme = (courses: string[]) => {
+  //   return courses.sort((a, b) => a.slice(a.length - 4) - b.slice(b.length - 4));
+  // };
 
-  const ad =
-    "123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432," +
-    "54 Holy Grail Street Niagara Town ZP 32908,3200 Main Rd. Bern AE 56210,1 Gordon St. Atlanta RE 13000," +
-    "10 Pussy Cat Rd. Chicago EX 34342,10 Gordon St. Atlanta RE 13000,58 Gordon Road Atlanta RE 13000," +
-    "22 Tokyo Av. Tedmondville SW 43098,674 Paris bd. Abbeville AA 45521,10 Surta Alley Goodtown GG 30654," +
-    "45 Holy Grail Al. Niagara Town ZP 32908,320 Main Al. Bern AE 56210,14 Gordon Park Atlanta RE 13000," +
-    "100 Pussy Cat Rd. Chicago EX 34342,2 Gordon St. Atlanta RE 13000,5 Gordon Road Atlanta RE 13000," +
-    "2200 Tokyo Av. Tedmondville SW 43098,67 Paris St. Abbeville AA 45521,11 Surta Avenue Goodtown GG 30654," +
-    "45 Holy Grail Al. Niagara Town ZP 32918,320 Main Al. Bern AE 56215,14 Gordon Park Atlanta RE 13200," +
-    "100 Pussy Cat Rd. Chicago EX 34345,2 Gordon St. Atlanta RE 13222,5 Gordon Road Atlanta RE 13001," +
-    "2200 Tokyo Av. Tedmondville SW 43198,67 Paris St. Abbeville AA 45522,11 Surta Avenue Goodville GG 30655," +
-    "2222 Tokyo Av. Tedmondville SW 43198,670 Paris St. Abbeville AA 45522,114 Surta Avenue Goodville GG 30655," +
-    "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000";
+  const binaryArrayToNumber = (arr: number[]) => {
+    return parseInt(arr.join(""), 2);
+    // console.log("arrstr =>", parseInt(arrstr, 2));
+  };
 
   const test = () => {
-    const test0 = travel(ad, "AA 45522"); //, "AA 45522:Paris St. Abbeville,Paris St. Abbeville/67,670")
-    const test1 = travel(ad, "EX 34342"); //, "EX 34342:Pussy Cat Rd. Chicago,Pussy Cat Rd. Chicago/10,100")
-    const test2 = travel(ad, "EX 34345"); //, "EX 34345:Pussy Cat Rd. Chicago/100")
-    const test3 = travel(ad, "AA 45521"); //, "AA 45521:Paris bd. Abbeville,Paris St. Abbeville/674,67")
-    const test4 = travel(ad, "AE 56215"); //, "AE 56215:Main Al. Bern/320")
-    const test5 = travel(ad, ""); //, ":/");
-    const test6 = travel(ad, "NY 5643"); // --> "NY 5643:/"
+    const test0 = binaryArrayToNumber([0, 0, 0, 1]); //, 1);
+    const test1 = binaryArrayToNumber([0, 0, 1, 0]); //, 2);
+    const test2 = binaryArrayToNumber([1, 1, 1, 1]); //, 15);
+    const test3 = binaryArrayToNumber([0, 1, 1, 0]); //, 6);
 
     console.log({
       test0,
       test1,
       test2,
       test3,
-      test4,
-      test5,
-      test6,
+      // test4,
+      // test5,
+      // test6,
       // test7,
       // test8,
       // test9,
@@ -504,7 +490,7 @@ export default function Home() {
       // test11,
     });
   };
-  // "Nananananananananananananananana Batman!" --> "####################################man!"
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -521,3 +507,51 @@ export default function Home() {
     </main>
   );
 }
+
+// // Don't change PcDisplay
+// const PcDisplay = (props) => {
+//   return (
+//     <div>
+//       <h1>{props.title}</h1>
+//       <p id="price">£{props.price}</p>
+//       <ul>
+//         <li>
+//           <label>CPU</label> <span>{props.cpu}</span>
+//         </li>
+//         <li>
+//           <label>RAM</label> <span>{props.ram}</span>
+//         </li>
+//         <li>
+//           <label>SSD</label> <span>{props.ssd}</span>
+//         </li>
+//       </ul>
+//     </div>
+//   );
+// };
+
+// const withPriceModel = (PcDisplay, increase, isProSpec) => {
+//   return (props) => {
+//     const defaultPrice = 50;
+//     const newProps = {};
+//     Object.assign(newProps, props);
+//     if (isProSpec) {
+//       newProps.price = defaultPrice + increase;
+//     } else {
+//       newProps.price = defaultPrice;
+//     }
+//     return <PcDisplay {...newProps} />;
+//   };
+// };
+
+// // export default function BasicModel({ title = "Pro computer", price = 110, cpu = "i7", ram = "16gb", ssd = "512gb" }) {
+// export default function BasicModel(props) {
+//   // const props = { title: prop.title, cpu: prop.cpu, ram: prop.ram, ssd: prop.ssd };
+//   const Component = withPriceModel(PcDisplay);
+//   return <Component {...props} />;
+// }
+
+// export default function ProModel({ props = { title: "Pro computer",price: 110, cpu: "i7", ram: "16gb", ssd: "512gb" } }) {
+//   const props = { title, cpu, ram, ssd };
+//   const Component = withPriceModel(PcDisplay, 60, true);
+//   return <Component {...props} />;
+// }
