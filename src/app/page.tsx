@@ -464,28 +464,147 @@ export default function Home() {
   //   return courses.sort((a, b) => a.slice(a.length - 4) - b.slice(b.length - 4));
   // };
 
-  const binaryArrayToNumber = (arr: number[]) => {
-    return parseInt(arr.join(""), 2);
-    // console.log("arrstr =>", parseInt(arrstr, 2));
-  };
+  // const binaryArrayToNumber = (arr: number[]) => {
+  //   return parseInt(arr.join(""), 2);
+  //   // console.log("arrstr =>", parseInt(arrstr, 2));
+  // };
+
+  // const uniteUnique = (...args: Array<any>) => Array.from(new Set(args.flat(args.length)));
+
+  // function elementsSum(arr: number[][], d?: number) {
+  //   let count = arr.length - 1;
+  //   return arr.reduce((sum, item, i) => {
+  //     sum += item[count] !== undefined ? item[count] : d || 0;
+  //     count--;
+  //     return sum;
+  //   }, 0);
+
+  // }
+
+  // const maxZeroSequence = (arr: number[]) => {
+  //   const isSummNull = (ar) => (ar.reduce((a, b) => a + b, 0) === 0 ? true : false);
+
+  //   if (isSummNull(arr)) return arr;
+
+  //   let nulishSummArr = [];
+  //   arr.map((_, i, ar) => {
+  //     const slisedArr = ar.slice(i);
+
+  //     for (let j = 0; j < slisedArr.length; j++) {
+  //       const innerSlisedArr = slisedArr.slice(0, slisedArr.length - j);
+
+  //       if (isSummNull(innerSlisedArr)) {
+  //         if (nulishSummArr.length === 0) {
+  //           nulishSummArr.push(innerSlisedArr);
+  //         } else {
+  //           if (nulishSummArr[0].length === innerSlisedArr.length) {
+  //             nulishSummArr.push(innerSlisedArr);
+  //           } else if (nulishSummArr[0].length < innerSlisedArr.length) {
+  //             nulishSummArr = [];
+  //             nulishSummArr.push(innerSlisedArr);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+
+  //   return nulishSummArr.length === 0 ? [] : nulishSummArr.at(-1);
+  // };
+
+  // function changeCase(identifier: string, targetCase: string) {
+  //   if (!targetCase.match(/(kebab|camel|snake)/)?.[0]) return undefined;
+
+  //   const dellimiterArr = identifier.replace(/[A-Za-z]/g, "").split("");
+
+  //   for (let i = 0; i < dellimiterArr.length; i++) {
+  //     if (dellimiterArr[0] !== dellimiterArr[i]) {
+  //       return undefined;
+  //     }
+  //   }
+
+  //   const delimiter = targetCase === "kebab" ? "-" : targetCase === "snake" ? "_" : "";
+
+  //   let result = [];
+  //   let check = false;
+  //   const identArr = identifier.split("");
+
+  //   for (let ind = 0; ind < identArr.length; ind++) {
+  //     const el = identArr[ind];
+  //     if (el !== "_" && el !== "-" && el.charCodeAt(0) === el.toUpperCase().charCodeAt(0) && dellimiterArr.length > 0) {
+  //       return undefined;
+  //     }
+
+  //     switch (targetCase) {
+  //       case "snake":
+  //       case "kebab":
+  //         if (el === "_" || el === "-") {
+  //           result.push(delimiter);
+  //         } else {
+  //           if (el.charCodeAt(0) === el.toUpperCase().charCodeAt(0)) {
+  //             result.push(delimiter);
+  //             result.push(el.toLowerCase());
+  //           } else {
+  //             result.push(el);
+  //           }
+  //         }
+  //         break;
+  //       default:
+  //         if (el === "_" || el === "-") {
+  //           check = true;
+  //           continue;
+  //         } else {
+  //           if (check) {
+  //             result.push(el.toUpperCase());
+  //             check = false;
+  //           } else {
+  //             result.push(el);
+  //           }
+  //         }
+
+  //         break;
+  //     }
+  //   }
+
+  //   return result.join("");
+  // }
+
+  function changeCase(identifier, targetCase) {
+    if (!/^$|^[a-z]+(([A-Z][a-z]*)+|(-[a-z]+)*|(_[a-z]+)*)$/.test(identifier)) return undefined;
+    switch (targetCase) {
+      case "snake":
+        return identifier.replace(/-([a-z])|([A-Z])/g, (_, x, y) => "_" + (x || y.toLowerCase()));
+      case "camel":
+        return identifier.replace(/[-_]([a-z])/g, (_, x) => x.toUpperCase());
+      case "kebab":
+        return identifier.replace(/_([a-z])|([A-Z])/g, (_, x, y) => "-" + (x || y.toLowerCase()));
+      default:
+        return undefined;
+    }
+  }
 
   const test = () => {
-    const test0 = binaryArrayToNumber([0, 0, 0, 1]); //, 1);
-    const test1 = binaryArrayToNumber([0, 0, 1, 0]); //, 2);
-    const test2 = binaryArrayToNumber([1, 1, 1, 1]); //, 15);
-    const test3 = binaryArrayToNumber([0, 1, 1, 0]); //, 6);
+    const test0 = changeCase("snakeCase", "snake"); //    "snake_case"
+    const test1 = changeCase("some-lisp-name", "camel"); //    "someLispName"
+    const test2 = changeCase("map_to_all", "kebab"); //    "map-to-all"
+    const test3 = changeCase("doHTMLRequest", "kebab"); //    "do-h-t-m-l-request"
+    const test4 = changeCase("invalid-inPut_bad", "kebab"); //    undefined
+    const test5 = changeCase("valid-input", "huh???"); //    undefined
+    const test6 = changeCase("", "camel"); //    ""
+    const test7 = changeCase("fuck-them-all", "snake"); //    "fuck_them_all"
+    const test8 = changeCase("snake-kebab_case", "kebab"); //    "undefined"
+    const test9 = changeCase("snakeCamel_case", "snake"); //    "undefined"
 
     console.log({
       test0,
       test1,
       test2,
       test3,
-      // test4,
-      // test5,
-      // test6,
-      // test7,
-      // test8,
-      // test9,
+      test4,
+      test5,
+      test6,
+      test7,
+      test8,
+      test9,
       // test10,
       // test11,
     });
